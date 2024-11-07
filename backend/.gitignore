@@ -1,0 +1,19 @@
+# Node.js dependencies
+node_modules/
+
+# Environment variable files (e.g., containing sensitive keys, credentials)
+.env
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# IDE or text editor configurations
+.idea/
+.vscode/
+
+# Build files (if any, such as for server-side bundling or compilation)
+build/
+# Optional: Backup or temporary files
+*.bak
+*.tmp
