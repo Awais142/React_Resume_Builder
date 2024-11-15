@@ -1,96 +1,40 @@
 import React, { useState } from 'react';
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  IconButton,
-  Box,
-  Drawer,
-  List,
-  ListItem,
-  ListItemText,
-  useMediaQuery,
-  useTheme,
-} from '@mui/material';
-import { Menu as MenuIcon } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import './Navbar.css';
 
 const Navbar = () => {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-
-  const menuItems = [
-    { text: 'Home', path: '/' },
-    { text: 'Create Resume', path: '/create' },
-    { text: 'Templates', path: '/templates' },
-    { text: 'AI Assistant', path: '/ai-assistant' },
-  ];
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
-
-  const drawer = (
-    <List>
-      {menuItems.map((item) => (
-        <ListItem button key={item.text} component={Link} to={item.path}>
-          <ListItemText primary={item.text} />
-        </ListItem>
-      ))}
-    </List>
-  );
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <>
-      <AppBar position="fixed" sx={{ backgroundColor: '#2c3e50' }}>
-        <Toolbar>
-          {isMobile && (
-            <IconButton
-              color="inherit"
-              edge="start"
-              onClick={handleDrawerToggle}
-              sx={{ mr: 2 }}
-            >
-              <MenuIcon />
-            </IconButton>
-          )}
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            ResumeAI Builder
-          </Typography>
-          {!isMobile && (
-            <Box sx={{ display: 'flex', gap: 2 }}>
-              {menuItems.map((item) => (
-                <Button
-                  key={item.text}
-                  color="inherit"
-                  component={Link}
-                  to={item.path}
-                >
-                  {item.text}
-                </Button>
-              ))}
-              <Button variant="contained" color="secondary">
-                Sign In
-              </Button>
-            </Box>
-          )}
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant="temporary"
-        anchor="left"
-        open={mobileOpen}
-        onClose={handleDrawerToggle}
-        ModalProps={{
-          keepMounted: true,
-        }}
+    <nav className="navbar">
+      <div className="nav-brand">
+        <Link to="/">ResumeBuilder</Link>
+      </div>
+      
+      <button 
+        className={`nav-toggle ${isOpen ? 'open' : ''}`}
+        onClick={() => setIsOpen(!isOpen)}
       >
-        {drawer}
-      </Drawer>
-      <Toolbar /> {/* This is for spacing below the fixed AppBar */}
-    </>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div className={`nav-menu ${isOpen ? 'open' : ''}`}>
+        <Link to="/" className="nav-item" onClick={() => setIsOpen(false)}>
+          Home
+        </Link>
+        <Link to="/templates" className="nav-item" onClick={() => setIsOpen(false)}>
+          Templates
+        </Link>
+        <Link to="/create" className="nav-item" onClick={() => setIsOpen(false)}>
+          Create Resume
+        </Link>
+        <Link to="/ai-assistant" className="nav-item" onClick={() => setIsOpen(false)}>
+          AI Assistant
+        </Link>
+      </div>
+    </nav>
   );
 };
 
