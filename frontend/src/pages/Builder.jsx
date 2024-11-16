@@ -97,10 +97,10 @@ const Builder = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8 transition-colors duration-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Stepper */}
-        <div className="mb-8">
+    <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col flex-grow">
+        {/* Stepper - Fixed at top */}
+        <div className="py-4 sticky top-0 bg-gray-50 dark:bg-gray-900 z-10">
           <div className="flex justify-between items-center relative">
             {/* Progress Line */}
             <div className="absolute top-5 left-0 w-full h-0.5">
@@ -149,7 +149,7 @@ const Builder = () => {
         </div>
 
         {/* Form Content */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 md:p-8 transition-colors duration-200">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 md:p-8 transition-colors duration-200 flex-grow">
           {renderStep()}
         </div>
       </div>

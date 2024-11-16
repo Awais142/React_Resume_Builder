@@ -4,6 +4,23 @@ const Skills = ({ data, onUpdate, onNext, onBack }) => {
   const [skills, setSkills] = useState(data || []);
   const [currentSkill, setCurrentSkill] = useState('');
   const [error, setError] = useState('');
+  const MAX_SKILLS = 15;
+  const MAX_SKILL_LENGTH = 30;
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  const skillCategories = {
+    technical: [
+      'JavaScript', 'React', 'Node.js', 'Python', 'Java', 'HTML', 'CSS', 'SQL', 'Git',
+      'TypeScript', 'Angular', 'Vue.js', 'PHP', 'Ruby', 'C++', 'C#', 'AWS', 'Docker'
+    ],
+    soft: [
+      'Communication', 'Leadership', 'Problem Solving', 'Team Collaboration', 'Time Management',
+      'Adaptability', 'Critical Thinking', 'Creativity', 'Project Management'
+    ],
+    languages: [
+      'English', 'Spanish', 'French', 'German', 'Chinese', 'Japanese', 'Korean', 'Arabic'
+    ]
+  };
 
   const handleAddSkill = (e) => {
     e.preventDefault();
@@ -11,13 +28,23 @@ const Skills = ({ data, onUpdate, onNext, onBack }) => {
       setError('Please enter a skill');
       return;
     }
+    if (currentSkill.length > MAX_SKILL_LENGTH) {
+      setError(`Skill name must be ${MAX_SKILL_LENGTH} characters or less`);
+      return;
+    }
     if (skills.includes(currentSkill.trim())) {
       setError('This skill has already been added');
+      return;
+    }
+    if (skills.length >= MAX_SKILLS) {
+      setError(`You can add up to ${MAX_SKILLS} skills`);
       return;
     }
     setSkills((prev) => [...prev, currentSkill.trim()]);
     setCurrentSkill('');
     setError('');
+    setShowSuccess(true);
+    setTimeout(() => setShowSuccess(false), 3000);
   };
 
   const removeSkill = (skillToRemove) => {
@@ -33,11 +60,6 @@ const Skills = ({ data, onUpdate, onNext, onBack }) => {
     onUpdate(skills);
     onNext();
   };
-
-  const skillSuggestions = [
-    'JavaScript', 'React', 'Node.js', 'Python', 'Java', 'HTML', 'CSS', 'SQL', 'Git',
-    'Agile', 'Project Management', 'Communication', 'Leadership', 'Problem Solving', 'Team Collaboration',
-  ];
 
   const addSuggestedSkill = (skill) => {
     if (!skills.includes(skill)) {
@@ -85,7 +107,7 @@ const Skills = ({ data, onUpdate, onNext, onBack }) => {
 
           <div>
             <label htmlFor="skill" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
-              Add a Skill
+              Add a Skill ({skills.length}/{MAX_SKILLS})
             </label>
             <div className="mt-1 flex rounded-md shadow-sm">
               <input
@@ -94,6 +116,7 @@ const Skills = ({ data, onUpdate, onNext, onBack }) => {
                 id="skill"
                 value={currentSkill}
                 onChange={(e) => setCurrentSkill(e.target.value)}
+                maxLength={MAX_SKILL_LENGTH}
                 className={`block w-full rounded-md shadow-sm ${
                   error ? 'border-red-300' : 'border-gray-300'
                 } focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white`}
@@ -102,7 +125,12 @@ const Skills = ({ data, onUpdate, onNext, onBack }) => {
               <button
                 type="button"
                 onClick={handleAddSkill}
-                className="ml-3 inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:bg-blue-500 dark:hover:bg-blue-600"
+                disabled={skills.length >= MAX_SKILLS}
+                className={`ml-3 inline-flex justify-center rounded-md border border-transparent py-2 px-4 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 ${
+                  skills.length >= MAX_SKILLS
+                    ? 'bg-gray-400 cursor-not-allowed'
+                    : 'bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600'
+                }`}
               >
                 Add
               </button>
@@ -110,31 +138,54 @@ const Skills = ({ data, onUpdate, onNext, onBack }) => {
             {error && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{error}</p>}
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Common Skills</label>
-            <div className="mt-2 flex flex-wrap gap-2">
-              {skillSuggestions.map((skill) => (
-                <button
-                  key={skill}
-                  type="button"
-                  onClick={() => addSuggestedSkill(skill)}
-                  disabled={skills.includes(skill)}
-                  className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
-                    skills.includes(skill)
-                      ? 'bg-gray-100 text-gray-400 cursor-not-allowed dark:bg-gray-600 dark:text-gray-400'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600'
-                  }`}
-                >
-                  {skill}
-                  {!skills.includes(skill) && (
-                    <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                    </svg>
-                  )}
-                </button>
-              ))}
+          {Object.entries(skillCategories).map(([category, categorySkills]) => (
+            <div key={category} className="space-y-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 capitalize">
+                {category} Skills
+              </label>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {categorySkills.map((skill) => (
+                  <button
+                    key={skill}
+                    type="button"
+                    onClick={() => addSuggestedSkill(skill)}
+                    disabled={skills.includes(skill) || skills.length >= MAX_SKILLS}
+                    className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
+                      skills.includes(skill)
+                        ? 'bg-gray-100 text-gray-400 cursor-not-allowed dark:bg-gray-600 dark:text-gray-400'
+                        : skills.length >= MAX_SKILLS
+                        ? 'bg-gray-100 text-gray-400 cursor-not-allowed dark:bg-gray-600 dark:text-gray-400'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600'
+                    }`}
+                  >
+                    {skill}
+                    {!skills.includes(skill) && skills.length < MAX_SKILLS && (
+                      <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                      </svg>
+                    )}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
+          ))}
+
+          {showSuccess && (
+            <div className="rounded-md bg-green-50 dark:bg-green-900 p-4">
+              <div className="flex">
+                <div className="flex-shrink-0">
+                  <svg className="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div className="ml-3">
+                  <p className="text-sm font-medium text-green-800 dark:text-green-200">
+                    Skill added successfully!
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 

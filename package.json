@@ -1,0 +1,14 @@
+{
+  "name": "mern-resume-builder",
+  "version": "1.0.0",
+  "description": "MERN Stack Resume Builder with AI",
+  "scripts": {
+    "dev": "concurrently \"cd frontend && npm run dev\" \"cd backend && npm run start\"",
+    "install-deps": "concurrently \"cd frontend && npm install\" \"cd backend && npm install\"",
+    "frontend": "cd frontend && npm run dev",
+    "backend": "cd backend && npm run start"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

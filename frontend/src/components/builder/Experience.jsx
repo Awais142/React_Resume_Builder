@@ -12,6 +12,9 @@ const Experience = ({ data, onUpdate, onNext, onBack }) => {
     description: '',
   });
   const [errors, setErrors] = useState({});
+  const [showSuccess, setShowSuccess] = useState(false);
+  const MAX_DESCRIPTION_LENGTH = 1000;
+  const MIN_DESCRIPTION_LENGTH = 50;
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -29,7 +32,20 @@ const Experience = ({ data, onUpdate, onNext, onBack }) => {
     if (!currentExperience.current && !currentExperience.endDate) {
       newErrors.endDate = 'End date is required';
     }
-    if (!currentExperience.description.trim()) newErrors.description = 'Description is required';
+    if (currentExperience.startDate && currentExperience.endDate && !currentExperience.current) {
+      const start = new Date(currentExperience.startDate);
+      const end = new Date(currentExperience.endDate);
+      if (start > end) {
+        newErrors.endDate = 'End date must be after start date';
+      }
+    }
+    if (!currentExperience.description.trim()) {
+      newErrors.description = 'Description is required';
+    } else if (currentExperience.description.length < MIN_DESCRIPTION_LENGTH) {
+      newErrors.description = `Description must be at least ${MIN_DESCRIPTION_LENGTH} characters`;
+    } else if (currentExperience.description.length > MAX_DESCRIPTION_LENGTH) {
+      newErrors.description = `Description must be ${MAX_DESCRIPTION_LENGTH} characters or less`;
+    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -49,6 +65,8 @@ const Experience = ({ data, onUpdate, onNext, onBack }) => {
         description: '',
       });
       setErrors({});
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 3000);
     }
   };
 
@@ -63,7 +81,7 @@ const Experience = ({ data, onUpdate, onNext, onBack }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8">
+    <form onSubmit={handleSubmit} className="space-y-8 max-h-[calc(100vh-12rem)] overflow-y-auto">
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 space-y-6">
         <div className="border-b border-gray-200 dark:border-gray-700 pb-4">
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Work Experience</h2>
@@ -245,13 +263,15 @@ const Experience = ({ data, onUpdate, onNext, onBack }) => {
 
         <div className="space-y-2">
           <label htmlFor="description" className="block text-sm font-medium text-gray-900 dark:text-white">
-            Description
+            Description - {currentExperience.description.length}/{MAX_DESCRIPTION_LENGTH} characters (minimum {MIN_DESCRIPTION_LENGTH})
           </label>
           <div className="relative rounded-md shadow-sm">
             <textarea
               id="description"
               name="description"
               rows={4}
+              minLength={MIN_DESCRIPTION_LENGTH}
+              maxLength={MAX_DESCRIPTION_LENGTH}
               value={currentExperience.description}
               onChange={handleChange}
               className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
@@ -271,6 +291,23 @@ const Experience = ({ data, onUpdate, onNext, onBack }) => {
           </div>
           {errors.description && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.description}</p>}
         </div>
+
+        {showSuccess && (
+          <div className="rounded-md bg-green-50 dark:bg-green-900 p-4">
+            <div className="flex">
+              <div className="flex-shrink-0">
+                <svg className="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <div className="ml-3">
+                <p className="text-sm font-medium text-green-800 dark:text-green-200">
+                  Experience added successfully!
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
 
         <div>
           <button
