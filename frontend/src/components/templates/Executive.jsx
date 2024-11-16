@@ -12,12 +12,12 @@ const Executive = ({ data }) => {
   } = data || {};
 
   return (
-    <div className="w-full max-w-2xl mx-auto bg-white shadow-lg">
+    <div className="w-full max-w-2xl mx-auto bg-white dark:bg-gray-800 shadow-lg transition-colors duration-200">
       {/* Header */}
-      <header className="relative bg-gray-900 text-white p-8">
+      <header className="relative bg-gray-900 dark:bg-gray-950 text-white p-8">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-4xl font-bold mb-2 font-display">{fullName}</h1>
-          <p className="text-xl text-gray-300 mb-6 font-display">{title}</p>
+          <p className="text-xl text-gray-300 dark:text-gray-400 mb-6 font-display">{title}</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
             <div className="flex items-center gap-2">
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -44,27 +44,27 @@ const Executive = ({ data }) => {
 
       <div className="p-8">
         {/* Summary */}
-        <section className="mb-8 border-b border-gray-200 pb-8">
-          <h2 className="text-2xl font-display font-bold text-gray-900 mb-4">Executive Summary</h2>
-          <p className="text-gray-700 leading-relaxed">{summary}</p>
+        <section className="mb-8 border-b border-gray-200 dark:border-gray-700 pb-8">
+          <h2 className="text-2xl font-display font-bold text-gray-900 dark:text-white mb-4">Executive Summary</h2>
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{summary}</p>
         </section>
 
         {/* Experience */}
         <section className="mb-8">
-          <h2 className="text-2xl font-display font-bold text-gray-900 mb-6">Professional Experience</h2>
+          <h2 className="text-2xl font-display font-bold text-gray-900 dark:text-white mb-6">Professional Experience</h2>
           {experience.map((job, index) => (
             <div key={index} className="mb-8">
               <div className="grid grid-cols-[1fr,auto] gap-4 mb-4">
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900">{job.title}</h3>
-                  <p className="text-gray-600 font-display">{job.company}</p>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{job.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-400 font-display">{job.company}</p>
                 </div>
                 <div className="text-right">
-                  <div className="text-gray-900 font-medium">{job.startDate} - {job.endDate}</div>
-                  <div className="text-gray-600">{job.location}</div>
+                  <div className="text-gray-900 dark:text-white font-medium">{job.startDate} - {job.endDate}</div>
+                  <div className="text-gray-600 dark:text-gray-400">{job.location}</div>
                 </div>
               </div>
-              <ul className="list-disc list-inside text-gray-700 space-y-2">
+              <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-2">
                 {job.responsibilities.map((resp, idx) => (
                   <li key={idx} className="leading-relaxed">{resp}</li>
                 ))}
@@ -75,14 +75,14 @@ const Executive = ({ data }) => {
 
         {/* Education */}
         <section className="mb-8">
-          <h2 className="text-2xl font-display font-bold text-gray-900 mb-6">Education</h2>
+          <h2 className="text-2xl font-display font-bold text-gray-900 dark:text-white mb-6">Education</h2>
           {education.map((edu, index) => (
             <div key={index} className="mb-6 grid grid-cols-[1fr,auto] gap-4">
               <div>
-                <h3 className="text-xl font-semibold text-gray-900">{edu.degree}</h3>
-                <p className="text-gray-600 font-display">{edu.school}</p>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{edu.degree}</h3>
+                <p className="text-gray-600 dark:text-gray-400 font-display">{edu.school}</p>
               </div>
-              <div className="text-right text-gray-900">
+              <div className="text-right text-gray-900 dark:text-white">
                 {edu.startDate} - {edu.endDate}
               </div>
             </div>
@@ -91,12 +91,12 @@ const Executive = ({ data }) => {
 
         {/* Skills */}
         <section>
-          <h2 className="text-2xl font-display font-bold text-gray-900 mb-6">Core Competencies</h2>
+          <h2 className="text-2xl font-display font-bold text-gray-900 dark:text-white mb-6">Core Competencies</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {skills.map((skill, index) => (
               <div
                 key={index}
-                className="px-4 py-2 bg-gray-50 text-gray-800 rounded border border-gray-200 text-center font-medium"
+                className="px-4 py-2 bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded border border-gray-200 dark:border-gray-600 text-center font-medium transition-colors duration-200"
               >
                 {skill}
               </div>

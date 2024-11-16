@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Templates from './pages/Templates';
+import Builder from './pages/Builder';
 import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/templates" element={<Templates />} />
+              <Route path="/builder" element={<Builder />} />
               {/* Add more routes as we create more pages */}
             </Routes>
           </main>
