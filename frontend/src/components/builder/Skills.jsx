@@ -68,7 +68,7 @@ const Skills = ({ data, onUpdate, onNext, onBack }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8 max-h-[calc(100vh-12rem)] overflow-y-auto">
+    <form onSubmit={handleSubmit} className="space-y-8">
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 space-y-6">
         <div className="border-b border-gray-200 dark:border-gray-700 pb-4">
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Skills</h2>
@@ -126,7 +126,7 @@ const Skills = ({ data, onUpdate, onNext, onBack }) => {
                 type="button"
                 onClick={handleAddSkill}
                 disabled={skills.length >= MAX_SKILLS}
-                className={`ml-3 inline-flex justify-center rounded-md border border-transparent py-2 px-4 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 ${
+                className={`ml-3 inline-flex justify-center rounded-md border border-transparent py-2 px-4 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 ${
                   skills.length >= MAX_SKILLS
                     ? 'bg-gray-400 cursor-not-allowed'
                     : 'bg-purple-600 hover:bg-purple-700 dark:bg-purple-500 dark:hover:bg-purple-600'
@@ -193,13 +193,13 @@ const Skills = ({ data, onUpdate, onNext, onBack }) => {
         <button
           type="button"
           onClick={onBack}
-          className="inline-flex justify-center rounded-md border border-gray-300 bg-white dark:bg-gray-700 py-2 px-4 text-sm font-medium text-gray-700 dark:text-gray-200 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+          className="inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-gray-600"
         >
           Back
         </button>
         <button
           type="submit"
-          className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+          className="inline-flex justify-center rounded-md border border-transparent bg-purple-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:bg-purple-500 dark:hover:bg-purple-600"
         >
           Next
         </button>

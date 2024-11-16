@@ -1,4 +1,13 @@
 const Minimal = ({ data }) => {
+  console.log("Minimal template received data:", data);
+
+  const {
+    personalInfo = {},
+    experience = [],
+    education = [],
+    skills = [],
+  } = data || {};
+
   const {
     fullName = "John Doe",
     title = "Software Engineer",
@@ -6,10 +15,7 @@ const Minimal = ({ data }) => {
     phone = "+1 234 567 890",
     location = "New York, USA",
     summary = "Experienced software engineer with a passion for building scalable applications",
-    experience = [],
-    education = [],
-    skills = [],
-  } = data || {};
+  } = personalInfo || {};
 
   return (
     <div className="w-full max-w-2xl mx-auto bg-white dark:bg-gray-800 p-8 shadow-lg transition-colors duration-200">
@@ -40,15 +46,20 @@ const Minimal = ({ data }) => {
                 <p className="text-gray-600 dark:text-gray-400">{job.company}</p>
               </div>
               <div className="text-right text-gray-500 dark:text-gray-400 text-sm">
-                {job.startDate} - {job.endDate}
+                {job.startDate} - {job.current ? 'Present' : job.endDate}
                 <div>{job.location}</div>
               </div>
             </div>
-            <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1">
-              {job.responsibilities.map((resp, idx) => (
-                <li key={idx}>{resp}</li>
-              ))}
-            </ul>
+            {job.description && (
+              <p className="text-gray-700 dark:text-gray-300 mb-2">{job.description}</p>
+            )}
+            {job.responsibilities && job.responsibilities.length > 0 && (
+              <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1">
+                {job.responsibilities.map((resp, idx) => (
+                  <li key={idx}>{resp}</li>
+                ))}
+              </ul>
+            )}
           </div>
         ))}
       </section>
@@ -61,9 +72,13 @@ const Minimal = ({ data }) => {
             <div>
               <h3 className="font-medium text-gray-900 dark:text-white">{edu.degree}</h3>
               <p className="text-gray-600 dark:text-gray-400">{edu.school}</p>
+              {edu.field && (
+                <p className="text-gray-500 dark:text-gray-400 text-sm">{edu.field}</p>
+              )}
             </div>
             <div className="text-right text-gray-500 dark:text-gray-400 text-sm">
-              {edu.startDate} - {edu.endDate}
+              {edu.startDate} - {edu.current ? 'Present' : edu.endDate}
+              {edu.location && <div>{edu.location}</div>}
             </div>
           </div>
         ))}

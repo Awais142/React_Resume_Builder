@@ -81,7 +81,7 @@ const Experience = ({ data, onUpdate, onNext, onBack }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8 max-h-[calc(100vh-12rem)] overflow-y-auto">
+    <form onSubmit={handleSubmit} className="space-y-8">
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 space-y-6">
         <div className="border-b border-gray-200 dark:border-gray-700 pb-4">
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Work Experience</h2>
@@ -92,16 +92,16 @@ const Experience = ({ data, onUpdate, onNext, onBack }) => {
 
         {experiences.length > 0 && (
           <div className="space-y-4">
-            <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">Added Experiences</h3>
+            <h3 className="text-lg font-medium text-gray-900 dark:text-white">Added Experiences</h3>
             {experiences.map((exp, index) => (
-              <div key={index} className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg relative group">
+              <div key={index} className="bg-white dark:bg-gray-700 p-4 rounded-lg relative group">
                 <button
                   onClick={() => removeExperience(index)}
                   className="absolute top-2 right-2 text-gray-400 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity"
                 >
                   Remove
                 </button>
-                <h4 className="font-medium text-gray-900 dark:text-gray-100">{exp.title}</h4>
+                <h4 className="font-medium text-gray-900 dark:text-white">{exp.title}</h4>
                 <p className="text-gray-600 dark:text-gray-300">{exp.company}</p>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   {exp.startDate} - {exp.current ? 'Present' : exp.endDate}
@@ -123,9 +123,11 @@ const Experience = ({ data, onUpdate, onNext, onBack }) => {
                 name="title"
                 value={currentExperience.title}
                 onChange={handleChange}
-                className={`block w-full rounded-md shadow-sm ${
-                  errors.title ? 'border-red-300' : 'border-gray-300'
-                } focus:border-purple-500 focus:ring-purple-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white`}
+                className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
+                  errors.title
+                    ? 'ring-red-300 dark:ring-red-500 focus:ring-red-500'
+                    : 'ring-gray-300 dark:ring-gray-700 focus:ring-gray-500'
+                } focus:ring-2 focus:ring-inset sm:text-sm transition-colors duration-200`}
                 placeholder="e.g. Software Engineer"
               />
               {errors.title && (
@@ -150,9 +152,11 @@ const Experience = ({ data, onUpdate, onNext, onBack }) => {
                 name="company"
                 value={currentExperience.company}
                 onChange={handleChange}
-                className={`block w-full rounded-md shadow-sm ${
-                  errors.company ? 'border-red-300' : 'border-gray-300'
-                } focus:border-purple-500 focus:ring-purple-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white`}
+                className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
+                  errors.company
+                    ? 'ring-red-300 dark:ring-red-500 focus:ring-red-500'
+                    : 'ring-gray-300 dark:ring-gray-700 focus:ring-gray-500'
+                } focus:ring-2 focus:ring-inset sm:text-sm transition-colors duration-200`}
                 placeholder="e.g. Acme Inc."
               />
               {errors.company && (
@@ -177,9 +181,7 @@ const Experience = ({ data, onUpdate, onNext, onBack }) => {
                 name="location"
                 value={currentExperience.location}
                 onChange={handleChange}
-                className={`block w-full rounded-md shadow-sm ${
-                  errors.location ? 'border-red-300' : 'border-gray-300'
-                } focus:border-purple-500 focus:ring-purple-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white`}
+                className="block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-gray-500 sm:text-sm transition-colors duration-200"
                 placeholder="e.g. New York, NY"
               />
             </div>
@@ -196,9 +198,11 @@ const Experience = ({ data, onUpdate, onNext, onBack }) => {
                 name="startDate"
                 value={currentExperience.startDate}
                 onChange={handleChange}
-                className={`block w-full rounded-md shadow-sm ${
-                  errors.startDate ? 'border-red-300' : 'border-gray-300'
-                } focus:border-purple-500 focus:ring-purple-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white`}
+                className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
+                  errors.startDate
+                    ? 'ring-red-300 dark:ring-red-500 focus:ring-red-500'
+                    : 'ring-gray-300 dark:ring-gray-700 focus:ring-gray-500'
+                } focus:ring-2 focus:ring-inset sm:text-sm transition-colors duration-200`}
               />
               {errors.startDate && (
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
@@ -223,9 +227,11 @@ const Experience = ({ data, onUpdate, onNext, onBack }) => {
                 value={currentExperience.endDate}
                 onChange={handleChange}
                 disabled={currentExperience.current}
-                className={`block w-full rounded-md shadow-sm ${
-                  errors.endDate ? 'border-red-300' : 'border-gray-300'
-                } focus:border-purple-500 focus:ring-purple-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white ${
+                className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
+                  errors.endDate
+                    ? 'ring-red-300 dark:ring-red-500 focus:ring-red-500'
+                    : 'ring-gray-300 dark:ring-gray-700 focus:ring-gray-500'
+                } focus:ring-2 focus:ring-inset sm:text-sm transition-colors duration-200 ${
                   currentExperience.current ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
               />
@@ -247,7 +253,7 @@ const Experience = ({ data, onUpdate, onNext, onBack }) => {
               name="current"
               checked={currentExperience.current}
               onChange={handleChange}
-              className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+              className="h-4 w-4 text-gray-600 focus:ring-gray-500 border-gray-300 rounded"
             />
             <label htmlFor="current" className="text-sm font-medium text-gray-700 dark:text-gray-200">
               I currently work here
@@ -268,9 +274,11 @@ const Experience = ({ data, onUpdate, onNext, onBack }) => {
               maxLength={MAX_DESCRIPTION_LENGTH}
               value={currentExperience.description}
               onChange={handleChange}
-              className={`block w-full rounded-md shadow-sm ${
-                errors.description ? 'border-red-300' : 'border-gray-300'
-              } focus:border-purple-500 focus:ring-purple-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white`}
+              className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
+                errors.description
+                  ? 'ring-red-300 dark:ring-red-500 focus:ring-red-500'
+                  : 'ring-gray-300 dark:ring-gray-700 focus:ring-gray-500'
+              } focus:ring-2 focus:ring-inset sm:text-sm transition-colors duration-200`}
               placeholder="Describe your responsibilities and achievements..."
             />
             {errors.description && (
@@ -316,7 +324,7 @@ const Experience = ({ data, onUpdate, onNext, onBack }) => {
         <button
           type="button"
           onClick={onBack}
-          className="inline-flex justify-center rounded-md border border-gray-300 bg-white dark:bg-gray-700 py-2 px-4 text-sm font-medium text-gray-700 dark:text-gray-200 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+          className="inline-flex justify-center rounded-md border border-gray-300 bg-white dark:bg-gray-800 py-2 px-4 text-sm font-medium text-gray-700 dark:text-gray-200 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
         >
           Back
         </button>

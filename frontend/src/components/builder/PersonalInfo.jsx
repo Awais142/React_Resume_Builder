@@ -38,7 +38,7 @@ const PersonalInfo = ({ data, onUpdate, onNext }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8 max-h-[calc(100vh-12rem)] overflow-y-auto">
+    <form onSubmit={handleSubmit} className="space-y-8">
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 space-y-6">
         <div className="border-b border-gray-200 dark:border-gray-700 pb-4">
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Personal Information</h2>
@@ -60,9 +60,11 @@ const PersonalInfo = ({ data, onUpdate, onNext }) => {
                 name="fullName"
                 value={formData.fullName}
                 onChange={handleChange}
-                className={`block w-full rounded-md shadow-sm ${
-                  errors.fullName ? 'border-red-300' : 'border-gray-300'
-                } focus:border-purple-500 focus:ring-purple-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white`}
+                className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
+                  errors.fullName
+                    ? 'ring-red-300 dark:ring-red-500 focus:ring-red-500'
+                    : 'ring-gray-300 dark:ring-gray-700 focus:ring-purple-500'
+                } focus:ring-2 focus:ring-inset sm:text-sm transition-colors duration-200`}
                 placeholder="John Doe"
               />
               {errors.fullName && (
@@ -118,9 +120,11 @@ const PersonalInfo = ({ data, onUpdate, onNext }) => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className={`block w-full rounded-md shadow-sm ${
-                  errors.email ? 'border-red-300' : 'border-gray-300'
-                } focus:border-purple-500 focus:ring-purple-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white`}
+                className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
+                  errors.email
+                    ? 'ring-red-300 dark:ring-red-500 focus:ring-red-500'
+                    : 'ring-gray-300 dark:ring-gray-700 focus:ring-purple-500'
+                } focus:ring-2 focus:ring-inset sm:text-sm transition-colors duration-200`}
                 placeholder="john@example.com"
               />
               {errors.email && (
@@ -146,9 +150,11 @@ const PersonalInfo = ({ data, onUpdate, onNext }) => {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                className={`block w-full rounded-md shadow-sm ${
-                  errors.phone ? 'border-red-300' : 'border-gray-300'
-                } focus:border-purple-500 focus:ring-purple-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white`}
+                className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
+                  errors.phone
+                    ? 'ring-red-300 dark:ring-red-500 focus:ring-red-500'
+                    : 'ring-gray-300 dark:ring-gray-700 focus:ring-purple-500'
+                } focus:ring-2 focus:ring-inset sm:text-sm transition-colors duration-200`}
                 placeholder="+1 (555) 000-0000"
               />
               {errors.phone && (
@@ -174,9 +180,11 @@ const PersonalInfo = ({ data, onUpdate, onNext }) => {
                 name="location"
                 value={formData.location}
                 onChange={handleChange}
-                className={`block w-full rounded-md shadow-sm ${
-                  errors.location ? 'border-red-300' : 'border-gray-300'
-                } focus:border-purple-500 focus:ring-purple-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white`}
+                className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
+                  errors.location
+                    ? 'ring-red-300 dark:ring-red-500 focus:ring-red-500'
+                    : 'ring-gray-300 dark:ring-gray-700 focus:ring-purple-500'
+                } focus:ring-2 focus:ring-inset sm:text-sm transition-colors duration-200`}
                 placeholder="New York, USA"
               />
               {errors.location && (
@@ -203,9 +211,11 @@ const PersonalInfo = ({ data, onUpdate, onNext }) => {
               rows={4}
               value={formData.summary}
               onChange={handleChange}
-              className={`block w-full rounded-md shadow-sm ${
-                errors.summary ? 'border-red-300' : 'border-gray-300'
-              } focus:border-purple-500 focus:ring-purple-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white`}
+              className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
+                errors.summary
+                  ? 'ring-red-300 dark:ring-red-500 focus:ring-red-500'
+                  : 'ring-gray-300 dark:ring-gray-700 focus:ring-purple-500'
+              } focus:ring-2 focus:ring-inset sm:text-sm transition-colors duration-200`}
               placeholder="Write a brief summary of your professional background and key achievements..."
             />
             {errors.summary && (
@@ -224,7 +234,7 @@ const PersonalInfo = ({ data, onUpdate, onNext }) => {
       <div className="flex justify-end">
         <button
           type="submit"
-          className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+          className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors duration-200"
         >
           Next Step
           <svg className="ml-2 -mr-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">

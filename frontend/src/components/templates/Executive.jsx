@@ -1,4 +1,13 @@
 const Executive = ({ data }) => {
+  console.log("Executive template received data:", data);
+
+  const {
+    personalInfo = {},
+    experience = [],
+    education = [],
+    skills = [],
+  } = data || {};
+
   const {
     fullName = "John Doe",
     title = "Software Engineer",
@@ -6,10 +15,7 @@ const Executive = ({ data }) => {
     phone = "+1 234 567 890",
     location = "New York, USA",
     summary = "Experienced software engineer with a passion for building scalable applications",
-    experience = [],
-    education = [],
-    skills = [],
-  } = data || {};
+  } = personalInfo || {};
 
   return (
     <div className="w-full max-w-2xl mx-auto bg-white dark:bg-gray-800 shadow-lg transition-colors duration-200">
@@ -60,15 +66,22 @@ const Executive = ({ data }) => {
                   <p className="text-gray-600 dark:text-gray-400 font-display">{job.company}</p>
                 </div>
                 <div className="text-right">
-                  <div className="text-gray-900 dark:text-white font-medium">{job.startDate} - {job.endDate}</div>
+                  <div className="text-gray-900 dark:text-white font-medium">
+                    {job.startDate} - {job.current ? 'Present' : job.endDate}
+                  </div>
                   <div className="text-gray-600 dark:text-gray-400">{job.location}</div>
                 </div>
               </div>
-              <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-2">
-                {job.responsibilities.map((resp, idx) => (
-                  <li key={idx} className="leading-relaxed">{resp}</li>
-                ))}
-              </ul>
+              {job.description && (
+                <p className="text-gray-700 dark:text-gray-300 mb-4">{job.description}</p>
+              )}
+              {job.responsibilities && job.responsibilities.length > 0 && (
+                <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-2">
+                  {job.responsibilities.map((resp, idx) => (
+                    <li key={idx} className="leading-relaxed">{resp}</li>
+                  ))}
+                </ul>
+              )}
             </div>
           ))}
         </section>
@@ -81,9 +94,17 @@ const Executive = ({ data }) => {
               <div>
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{edu.degree}</h3>
                 <p className="text-gray-600 dark:text-gray-400 font-display">{edu.school}</p>
+                {edu.field && (
+                  <p className="text-gray-500 dark:text-gray-400">{edu.field}</p>
+                )}
               </div>
-              <div className="text-right text-gray-900 dark:text-white">
-                {edu.startDate} - {edu.endDate}
+              <div className="text-right">
+                <div className="text-gray-900 dark:text-white">
+                  {edu.startDate} - {edu.current ? 'Present' : edu.endDate}
+                </div>
+                {edu.location && (
+                  <div className="text-gray-600 dark:text-gray-400">{edu.location}</div>
+                )}
               </div>
             </div>
           ))}

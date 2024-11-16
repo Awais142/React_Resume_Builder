@@ -16,6 +16,8 @@ const Education = ({ data, onUpdate, onNext, onBack }) => {
   const [showSuccess, setShowSuccess] = useState(false);
   const MAX_DESCRIPTION_LENGTH = 500;
 
+  console.log("Initial education data:", data);
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setCurrentEducation((prev) => ({
@@ -51,7 +53,9 @@ const Education = ({ data, onUpdate, onNext, onBack }) => {
   const addEducation = (e) => {
     e.preventDefault();
     if (validateEducation()) {
-      setEducations((prev) => [...prev, currentEducation]);
+      const newEducations = [...educations, currentEducation];
+      setEducations(newEducations);
+      onUpdate(newEducations);
       setCurrentEducation({
         school: '',
         degree: '',
@@ -69,17 +73,20 @@ const Education = ({ data, onUpdate, onNext, onBack }) => {
   };
 
   const removeEducation = (index) => {
-    setEducations((prev) => prev.filter((_, i) => i !== index));
+    const newEducations = educations.filter((_, i) => i !== index);
+    setEducations(newEducations);
+    onUpdate(newEducations);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("Submitting education data:", educations);
     onUpdate(educations);
     onNext();
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8 max-h-[calc(100vh-12rem)] overflow-y-auto">
+    <form onSubmit={handleSubmit} className="space-y-8">
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 space-y-6">
         <div className="border-b border-gray-200 dark:border-gray-700 pb-4">
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Education</h2>
@@ -90,16 +97,16 @@ const Education = ({ data, onUpdate, onNext, onBack }) => {
 
         {educations.length > 0 && (
           <div className="space-y-4">
-            <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">Added Education</h3>
+            <h3 className="text-lg font-medium text-gray-900 dark:text-white">Added Education</h3>
             {educations.map((edu, index) => (
-              <div key={index} className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg relative group">
+              <div key={index} className="bg-white dark:bg-gray-700 p-4 rounded-lg relative group">
                 <button
                   onClick={() => removeEducation(index)}
                   className="absolute top-2 right-2 text-gray-400 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity"
                 >
                   Remove
                 </button>
-                <h4 className="font-medium text-gray-900 dark:text-gray-100">{edu.degree} in {edu.field}</h4>
+                <h4 className="font-medium text-gray-900 dark:text-white">{edu.degree} in {edu.field}</h4>
                 <p className="text-gray-600 dark:text-gray-300">{edu.school}</p>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   {edu.startDate} - {edu.current ? 'Present' : edu.endDate}
@@ -121,9 +128,11 @@ const Education = ({ data, onUpdate, onNext, onBack }) => {
                 name="school"
                 value={currentEducation.school}
                 onChange={handleChange}
-                className={`block w-full rounded-md shadow-sm ${
-                  errors.school ? 'border-red-300' : 'border-gray-300'
-                } focus:border-purple-500 focus:ring-purple-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white`}
+                className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
+                  errors.school
+                    ? 'ring-red-300 dark:ring-red-500 focus:ring-red-500'
+                    : 'ring-gray-300 dark:ring-gray-700 focus:ring-blue-500'
+                } focus:ring-2 focus:ring-inset sm:text-sm transition-colors duration-200`}
                 placeholder="e.g. Harvard University"
               />
               {errors.school && (
@@ -148,9 +157,11 @@ const Education = ({ data, onUpdate, onNext, onBack }) => {
                 name="degree"
                 value={currentEducation.degree}
                 onChange={handleChange}
-                className={`block w-full rounded-md shadow-sm ${
-                  errors.degree ? 'border-red-300' : 'border-gray-300'
-                } focus:border-purple-500 focus:ring-purple-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white`}
+                className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
+                  errors.degree
+                    ? 'ring-red-300 dark:ring-red-500 focus:ring-red-500'
+                    : 'ring-gray-300 dark:ring-gray-700 focus:ring-blue-500'
+                } focus:ring-2 focus:ring-inset sm:text-sm transition-colors duration-200`}
                 placeholder="e.g. Bachelor of Science"
               />
               {errors.degree && (
@@ -175,9 +186,11 @@ const Education = ({ data, onUpdate, onNext, onBack }) => {
                 name="field"
                 value={currentEducation.field}
                 onChange={handleChange}
-                className={`block w-full rounded-md shadow-sm ${
-                  errors.field ? 'border-red-300' : 'border-gray-300'
-                } focus:border-purple-500 focus:ring-purple-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white`}
+                className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
+                  errors.field
+                    ? 'ring-red-300 dark:ring-red-500 focus:ring-red-500'
+                    : 'ring-gray-300 dark:ring-gray-700 focus:ring-blue-500'
+                } focus:ring-2 focus:ring-inset sm:text-sm transition-colors duration-200`}
                 placeholder="e.g. Computer Science"
               />
               {errors.field && (
@@ -202,7 +215,7 @@ const Education = ({ data, onUpdate, onNext, onBack }) => {
                 name="location"
                 value={currentEducation.location}
                 onChange={handleChange}
-                className="block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-purple-500 sm:text-sm transition-colors duration-200"
+                className="block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm transition-colors duration-200"
                 placeholder="e.g. Cambridge, MA"
               />
             </div>
@@ -219,9 +232,11 @@ const Education = ({ data, onUpdate, onNext, onBack }) => {
                 name="startDate"
                 value={currentEducation.startDate}
                 onChange={handleChange}
-                className={`block w-full rounded-md shadow-sm ${
-                  errors.startDate ? 'border-red-300' : 'border-gray-300'
-                } focus:border-purple-500 focus:ring-purple-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white`}
+                className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
+                  errors.startDate
+                    ? 'ring-red-300 dark:ring-red-500 focus:ring-red-500'
+                    : 'ring-gray-300 dark:ring-gray-700 focus:ring-blue-500'
+                } focus:ring-2 focus:ring-inset sm:text-sm transition-colors duration-200`}
               />
               {errors.startDate && (
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
@@ -246,9 +261,11 @@ const Education = ({ data, onUpdate, onNext, onBack }) => {
                 value={currentEducation.endDate}
                 onChange={handleChange}
                 disabled={currentEducation.current}
-                className={`block w-full rounded-md shadow-sm ${
-                  errors.endDate ? 'border-red-300' : 'border-gray-300'
-                } focus:border-purple-500 focus:ring-purple-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white ${
+                className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
+                  errors.endDate
+                    ? 'ring-red-300 dark:ring-red-500 focus:ring-red-500'
+                    : 'ring-gray-300 dark:ring-gray-700 focus:ring-blue-500'
+                } focus:ring-2 focus:ring-inset sm:text-sm transition-colors duration-200 ${
                   currentEducation.current ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
               />
@@ -270,7 +287,7 @@ const Education = ({ data, onUpdate, onNext, onBack }) => {
               name="current"
               checked={currentEducation.current}
               onChange={handleChange}
-              className="h-4 w-4 text-blue-600 focus:ring-purple-500 border-gray-300 rounded"
+              className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
             />
             <label htmlFor="current" className="text-sm font-medium text-gray-700 dark:text-gray-200">
               I am currently studying here
@@ -290,7 +307,7 @@ const Education = ({ data, onUpdate, onNext, onBack }) => {
               maxLength={MAX_DESCRIPTION_LENGTH}
               value={currentEducation.description}
               onChange={handleChange}
-              className="block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-purple-500 sm:text-sm transition-colors duration-200"
+              className="block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm transition-colors duration-200"
               placeholder="Add any relevant details about your education..."
             />
           </div>
@@ -329,7 +346,7 @@ const Education = ({ data, onUpdate, onNext, onBack }) => {
         <button
           type="button"
           onClick={onBack}
-          className="inline-flex justify-center rounded-md border border-gray-300 bg-white dark:bg-gray-700 py-2 px-4 text-sm font-medium text-gray-700 dark:text-gray-200 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+          className="inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
         >
           Back
         </button>
@@ -346,4 +363,5 @@ const Education = ({ data, onUpdate, onNext, onBack }) => {
     </form>
   );
 };
+
 export default Education;
