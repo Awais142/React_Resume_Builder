@@ -41,7 +41,7 @@ const TemplateSelection = ({ data, selectedTemplate, onUpdate, onBack }) => {
   };
 
   return (
-    <form className="space-y-8">
+    <form className="space-y-8 max-h-[calc(100vh-12rem)] overflow-y-auto">
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 space-y-6">
         <div className="border-b border-gray-200 dark:border-gray-700 pb-4">
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Template Selection</h2>
@@ -60,8 +60,8 @@ const TemplateSelection = ({ data, selectedTemplate, onUpdate, onBack }) => {
                   key={template.id}
                   className={`relative rounded-lg border p-4 cursor-pointer transition-all ${
                     selected === template.id
-                      ? 'border-blue-500 ring-2 ring-blue-500'
-                      : 'border-gray-300 dark:border-gray-600 hover:border-blue-300'
+                      ? 'border-purple-500 ring-2 ring-purple-500'
+                      : 'border-gray-300 dark:border-gray-600 hover:border-purple-300'
                   }`}
                   onClick={() => handleSelect(template.id)}
                 >
@@ -73,7 +73,7 @@ const TemplateSelection = ({ data, selectedTemplate, onUpdate, onBack }) => {
                     <div
                       className={`w-5 h-5 rounded-full border-2 ${
                         selected === template.id
-                          ? 'border-blue-500 bg-blue-500'
+                          ? 'border-purple-500 bg-purple-500'
                           : 'border-gray-300 dark:border-gray-600'
                       }`}
                     >
@@ -119,15 +119,15 @@ const TemplateSelection = ({ data, selectedTemplate, onUpdate, onBack }) => {
         <button
           type="button"
           onClick={onBack}
-          className="inline-flex justify-center rounded-md border border-gray-300 bg-white dark:bg-gray-700 py-2 px-4 text-sm font-medium text-gray-700 dark:text-gray-200 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          className="inline-flex justify-center rounded-md border border-gray-300 bg-white dark:bg-gray-700 py-2 px-4 text-sm font-medium text-gray-700 dark:text-gray-200 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
         >
           Back
         </button>
         <button
           type="submit"
-          className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"
+          className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
         >
-          Next
+          Generate Resume
           <svg className="ml-2 -mr-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
             <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
           </svg>

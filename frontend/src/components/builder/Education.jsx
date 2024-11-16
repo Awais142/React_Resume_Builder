@@ -121,11 +121,9 @@ const Education = ({ data, onUpdate, onNext, onBack }) => {
                 name="school"
                 value={currentEducation.school}
                 onChange={handleChange}
-                className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
-                  errors.school
-                    ? 'ring-red-300 dark:ring-red-500 focus:ring-red-500'
-                    : 'ring-gray-300 dark:ring-gray-700 focus:ring-blue-500'
-                } focus:ring-2 focus:ring-inset sm:text-sm transition-colors duration-200`}
+                className={`block w-full rounded-md shadow-sm ${
+                  errors.school ? 'border-red-300' : 'border-gray-300'
+                } focus:border-purple-500 focus:ring-purple-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white`}
                 placeholder="e.g. Harvard University"
               />
               {errors.school && (
@@ -150,11 +148,9 @@ const Education = ({ data, onUpdate, onNext, onBack }) => {
                 name="degree"
                 value={currentEducation.degree}
                 onChange={handleChange}
-                className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
-                  errors.degree
-                    ? 'ring-red-300 dark:ring-red-500 focus:ring-red-500'
-                    : 'ring-gray-300 dark:ring-gray-700 focus:ring-blue-500'
-                } focus:ring-2 focus:ring-inset sm:text-sm transition-colors duration-200`}
+                className={`block w-full rounded-md shadow-sm ${
+                  errors.degree ? 'border-red-300' : 'border-gray-300'
+                } focus:border-purple-500 focus:ring-purple-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white`}
                 placeholder="e.g. Bachelor of Science"
               />
               {errors.degree && (
@@ -179,11 +175,9 @@ const Education = ({ data, onUpdate, onNext, onBack }) => {
                 name="field"
                 value={currentEducation.field}
                 onChange={handleChange}
-                className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
-                  errors.field
-                    ? 'ring-red-300 dark:ring-red-500 focus:ring-red-500'
-                    : 'ring-gray-300 dark:ring-gray-700 focus:ring-blue-500'
-                } focus:ring-2 focus:ring-inset sm:text-sm transition-colors duration-200`}
+                className={`block w-full rounded-md shadow-sm ${
+                  errors.field ? 'border-red-300' : 'border-gray-300'
+                } focus:border-purple-500 focus:ring-purple-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white`}
                 placeholder="e.g. Computer Science"
               />
               {errors.field && (
@@ -208,7 +202,7 @@ const Education = ({ data, onUpdate, onNext, onBack }) => {
                 name="location"
                 value={currentEducation.location}
                 onChange={handleChange}
-                className="block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm transition-colors duration-200"
+                className="block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-purple-500 sm:text-sm transition-colors duration-200"
                 placeholder="e.g. Cambridge, MA"
               />
             </div>
@@ -225,11 +219,9 @@ const Education = ({ data, onUpdate, onNext, onBack }) => {
                 name="startDate"
                 value={currentEducation.startDate}
                 onChange={handleChange}
-                className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
-                  errors.startDate
-                    ? 'ring-red-300 dark:ring-red-500 focus:ring-red-500'
-                    : 'ring-gray-300 dark:ring-gray-700 focus:ring-blue-500'
-                } focus:ring-2 focus:ring-inset sm:text-sm transition-colors duration-200`}
+                className={`block w-full rounded-md shadow-sm ${
+                  errors.startDate ? 'border-red-300' : 'border-gray-300'
+                } focus:border-purple-500 focus:ring-purple-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white`}
               />
               {errors.startDate && (
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
@@ -254,11 +246,9 @@ const Education = ({ data, onUpdate, onNext, onBack }) => {
                 value={currentEducation.endDate}
                 onChange={handleChange}
                 disabled={currentEducation.current}
-                className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
-                  errors.endDate
-                    ? 'ring-red-300 dark:ring-red-500 focus:ring-red-500'
-                    : 'ring-gray-300 dark:ring-gray-700 focus:ring-blue-500'
-                } focus:ring-2 focus:ring-inset sm:text-sm transition-colors duration-200 ${
+                className={`block w-full rounded-md shadow-sm ${
+                  errors.endDate ? 'border-red-300' : 'border-gray-300'
+                } focus:border-purple-500 focus:ring-purple-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white ${
                   currentEducation.current ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
               />
@@ -280,7 +270,7 @@ const Education = ({ data, onUpdate, onNext, onBack }) => {
               name="current"
               checked={currentEducation.current}
               onChange={handleChange}
-              className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+              className="h-4 w-4 text-blue-600 focus:ring-purple-500 border-gray-300 rounded"
             />
             <label htmlFor="current" className="text-sm font-medium text-gray-700 dark:text-gray-200">
               I am currently studying here
@@ -300,7 +290,7 @@ const Education = ({ data, onUpdate, onNext, onBack }) => {
               maxLength={MAX_DESCRIPTION_LENGTH}
               value={currentEducation.description}
               onChange={handleChange}
-              className="block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm transition-colors duration-200"
+              className="block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-purple-500 sm:text-sm transition-colors duration-200"
               placeholder="Add any relevant details about your education..."
             />
           </div>
@@ -328,7 +318,7 @@ const Education = ({ data, onUpdate, onNext, onBack }) => {
           <button
             type="button"
             onClick={addEducation}
-            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"
+            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors duration-200"
           >
             Add Education
           </button>
@@ -339,13 +329,13 @@ const Education = ({ data, onUpdate, onNext, onBack }) => {
         <button
           type="button"
           onClick={onBack}
-          className="inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          className="inline-flex justify-center rounded-md border border-gray-300 bg-white dark:bg-gray-700 py-2 px-4 text-sm font-medium text-gray-700 dark:text-gray-200 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
         >
           Back
         </button>
         <button
           type="submit"
-          className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"
+          className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors duration-200"
         >
           Next
           <svg className="ml-2 -mr-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
