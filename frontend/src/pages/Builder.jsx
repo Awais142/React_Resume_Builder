@@ -1,26 +1,41 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PersonalInfo from '../components/builder/PersonalInfo';
 import Experience from '../components/builder/Experience';
 import Education from '../components/builder/Education';
 import Skills from '../components/builder/Skills';
 import TemplateSelection from '../components/builder/TemplateSelection';
 
+const STORAGE_KEY = 'resumeBuilderState';
+
 const Builder = () => {
-  const [activeStep, setActiveStep] = useState(0);
-  const [formData, setFormData] = useState({
-    personalInfo: {
-      fullName: '',
-      title: '',
-      email: '',
-      phone: '',
-      location: '',
-      summary: '',
-    },
-    experience: [],
-    education: [],
-    skills: [],
-    selectedTemplate: 'modern',
+  // Initialize state from localStorage or use default values
+  const [activeStep, setActiveStep] = useState(() => {
+    const savedState = localStorage.getItem(STORAGE_KEY);
+    return savedState ? JSON.parse(savedState).activeStep : 0;
   });
+
+  const [formData, setFormData] = useState(() => {
+    const savedState = localStorage.getItem(STORAGE_KEY);
+    return savedState ? JSON.parse(savedState).formData : {
+      personalInfo: {
+        fullName: '',
+        title: '',
+        email: '',
+        phone: '',
+        location: '',
+        summary: '',
+      },
+      experience: [],
+      education: [],
+      skills: [],
+      selectedTemplate: 'modern',
+    };
+  });
+
+  // Save state to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ activeStep, formData }));
+  }, [activeStep, formData]);
 
   const steps = [
     { title: 'Personal Info', description: 'Basic information about you' },
@@ -53,6 +68,7 @@ const Builder = () => {
             data={formData.personalInfo}
             onUpdate={(data) => handleUpdateFormData('personalInfo', data)}
             onNext={handleNext}
+            onBack={handleBack}
           />
         );
       case 1:

@@ -123,10 +123,10 @@ const Experience = ({ data, onUpdate, onNext, onBack }) => {
                 name="title"
                 value={currentExperience.title}
                 onChange={handleChange}
-                className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
+                className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
                   errors.title
                     ? 'ring-red-300 dark:ring-red-500 focus:ring-red-500'
-                    : 'ring-gray-300 dark:ring-gray-700 focus:ring-gray-500'
+                    : 'ring-gray-300 dark:ring-gray-700 focus:ring-purple-500'
                 } focus:ring-2 focus:ring-inset sm:text-sm transition-colors duration-200`}
                 placeholder="e.g. Software Engineer"
               />
@@ -152,10 +152,10 @@ const Experience = ({ data, onUpdate, onNext, onBack }) => {
                 name="company"
                 value={currentExperience.company}
                 onChange={handleChange}
-                className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
+                className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
                   errors.company
                     ? 'ring-red-300 dark:ring-red-500 focus:ring-red-500'
-                    : 'ring-gray-300 dark:ring-gray-700 focus:ring-gray-500'
+                    : 'ring-gray-300 dark:ring-gray-700 focus:ring-purple-500'
                 } focus:ring-2 focus:ring-inset sm:text-sm transition-colors duration-200`}
                 placeholder="e.g. Acme Inc."
               />
@@ -181,7 +181,7 @@ const Experience = ({ data, onUpdate, onNext, onBack }) => {
                 name="location"
                 value={currentExperience.location}
                 onChange={handleChange}
-                className="block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-gray-500 sm:text-sm transition-colors duration-200"
+                className="block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-purple-500 sm:text-sm transition-colors duration-200"
                 placeholder="e.g. New York, NY"
               />
             </div>
@@ -198,10 +198,10 @@ const Experience = ({ data, onUpdate, onNext, onBack }) => {
                 name="startDate"
                 value={currentExperience.startDate}
                 onChange={handleChange}
-                className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
+                className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
                   errors.startDate
                     ? 'ring-red-300 dark:ring-red-500 focus:ring-red-500'
-                    : 'ring-gray-300 dark:ring-gray-700 focus:ring-gray-500'
+                    : 'ring-gray-300 dark:ring-gray-700 focus:ring-purple-500'
                 } focus:ring-2 focus:ring-inset sm:text-sm transition-colors duration-200`}
               />
               {errors.startDate && (
@@ -227,10 +227,10 @@ const Experience = ({ data, onUpdate, onNext, onBack }) => {
                 value={currentExperience.endDate}
                 onChange={handleChange}
                 disabled={currentExperience.current}
-                className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
+                className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
                   errors.endDate
                     ? 'ring-red-300 dark:ring-red-500 focus:ring-red-500'
-                    : 'ring-gray-300 dark:ring-gray-700 focus:ring-gray-500'
+                    : 'ring-gray-300 dark:ring-gray-700 focus:ring-purple-500'
                 } focus:ring-2 focus:ring-inset sm:text-sm transition-colors duration-200 ${
                   currentExperience.current ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
@@ -269,15 +269,13 @@ const Experience = ({ data, onUpdate, onNext, onBack }) => {
             <textarea
               id="description"
               name="description"
-              rows={4}
-              minLength={MIN_DESCRIPTION_LENGTH}
-              maxLength={MAX_DESCRIPTION_LENGTH}
               value={currentExperience.description}
               onChange={handleChange}
-              className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
+              rows={4}
+              className={`block w-full rounded-md border-0 py-2.5 px-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ${
                 errors.description
                   ? 'ring-red-300 dark:ring-red-500 focus:ring-red-500'
-                  : 'ring-gray-300 dark:ring-gray-700 focus:ring-gray-500'
+                  : 'ring-gray-300 dark:ring-gray-700 focus:ring-purple-500'
               } focus:ring-2 focus:ring-inset sm:text-sm transition-colors duration-200`}
               placeholder="Describe your responsibilities and achievements..."
             />
@@ -324,7 +322,7 @@ const Experience = ({ data, onUpdate, onNext, onBack }) => {
         <button
           type="button"
           onClick={onBack}
-          className="inline-flex justify-center rounded-md border border-gray-300 bg-white dark:bg-gray-800 py-2 px-4 text-sm font-medium text-gray-700 dark:text-gray-200 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+          className="px-6 py-2.5 text-sm font-medium rounded-lg text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 transition-all duration-300"
         >
           Back
         </button>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const PersonalInfo = ({ data, onUpdate, onNext }) => {
+const PersonalInfo = ({ data, onUpdate, onNext, onBack }) => {
   const [formData, setFormData] = useState(data);
   const [errors, setErrors] = useState({});
 
@@ -231,7 +231,14 @@ const PersonalInfo = ({ data, onUpdate, onNext }) => {
       </div>
 
       {/* Navigation Buttons */}
-      <div className="flex justify-end">
+      <div className="flex justify-between pt-6">
+        <button
+          type="button"
+          onClick={onBack}
+          className="px-6 py-2.5 text-sm font-medium rounded-lg text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 transition-all duration-300"
+        >
+          Back
+        </button>
         <button
           type="submit"
           className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors duration-200"

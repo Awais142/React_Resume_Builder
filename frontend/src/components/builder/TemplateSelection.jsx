@@ -122,8 +122,8 @@ const TemplateSelection = ({ data, selectedTemplate, onUpdate, onBack }) => {
                   key={template.id}
                   className={`relative rounded-lg border p-4 cursor-pointer transition-all ${
                     selected === template.id
-                      ? 'border-blue-500 ring-2 ring-blue-500'
-                      : 'border-gray-300 dark:border-gray-600 hover:border-blue-300'
+                      ? 'border-purple-500 ring-2 ring-purple-500'
+                      : 'border-gray-300 dark:border-gray-600 hover:border-purple-300'
                   }`}
                   onClick={() => handleSelect(template.id)}
                 >
@@ -135,7 +135,7 @@ const TemplateSelection = ({ data, selectedTemplate, onUpdate, onBack }) => {
                     <div
                       className={`w-5 h-5 rounded-full border-2 ${
                         selected === template.id
-                          ? 'border-blue-500 bg-blue-500'
+                          ? 'border-purple-500 bg-purple-500'
                           : 'border-gray-300 dark:border-gray-600'
                       }`}
                     >
@@ -182,7 +182,7 @@ const TemplateSelection = ({ data, selectedTemplate, onUpdate, onBack }) => {
                 className={`w-full px-4 py-2 text-sm font-medium rounded-md text-white ${
                   isDownloading
                     ? 'bg-gray-400 cursor-not-allowed'
-                    : 'bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
+                    : 'bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500'
                 }`}
               >
                 {isDownloading ? 'Downloading...' : 'Download Resume'}
@@ -203,7 +203,7 @@ const TemplateSelection = ({ data, selectedTemplate, onUpdate, onBack }) => {
       <div className="flex justify-between">
         <button
           onClick={onBack}
-          className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          className="px-6 py-2.5 text-sm font-medium rounded-lg text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 transition-all duration-300"
         >
           Back
         </button>
