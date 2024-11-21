@@ -5,6 +5,7 @@ import Modern from '../templates/Modern';
 import Creative from '../templates/Creative';
 import Minimal from '../templates/Minimal';
 import Executive from '../templates/Executive';
+import Professional from '../templates/Professional';
 
 const TemplateSelection = ({ data, selectedTemplate, onUpdate, onBack }) => {
   const [selected, setSelected] = useState(selectedTemplate);
@@ -14,6 +15,12 @@ const TemplateSelection = ({ data, selectedTemplate, onUpdate, onBack }) => {
   const resumeRef = useRef(null);
 
   const templates = [
+    {
+      id: 'professional',
+      name: 'Professional',
+      component: Professional,
+      description: 'Clean and organized layout with modern timeline features',
+    },
     {
       id: 'modern',
       name: 'Modern',
