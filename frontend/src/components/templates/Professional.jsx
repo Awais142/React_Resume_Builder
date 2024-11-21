@@ -30,7 +30,7 @@ const Professional = ({ data }) => {
   const skillColumns = chunkArray(skills, Math.ceil(skills.length / 3));
 
   return (
-    <div className="w-full max-w-4xl mx-auto bg-white dark:bg-gray-800 shadow-lg p-8 transition-colors duration-200">
+    <div className="w-full max-w-4xl mx-auto bg-white dark:bg-gray-800 shadow-lg p-12 my-8 transition-colors duration-200">
       {/* Header - Name and Title */}
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-2">{fullName}</h1>
@@ -53,7 +53,7 @@ const Professional = ({ data }) => {
         <div className="grid grid-cols-3 gap-4">
           {skillColumns.map((column, columnIndex) => (
             <div key={columnIndex} className="space-y-2">
-              {column.map((skill, skillIndex) => (
+              {column.filter(skill => !languages.includes(skill)).map((skill, skillIndex) => (
                 <p key={skillIndex} className="text-gray-600 dark:text-gray-300">{skill}</p>
               ))}
             </div>
@@ -100,7 +100,7 @@ const Professional = ({ data }) => {
       </div>
 
       {/* References Section */}
-      <div>
+      <div className="mb-8">
         <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">References</h3>
         <div className="grid grid-cols-2 gap-4">
           {references.map((reference, index) => (
@@ -111,6 +111,11 @@ const Professional = ({ data }) => {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* References Note */}
+      <div className="text-center text-gray-500 dark:text-gray-400 italic mt-4">
+        References will be provided upon request
       </div>
     </div>
   );
