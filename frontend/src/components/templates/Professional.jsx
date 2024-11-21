@@ -1,4 +1,6 @@
 import React from 'react';
+import '@fontsource/playfair-display';
+import '@fontsource/montserrat';
 
 const Professional = ({ data }) => {
   const {
@@ -33,8 +35,8 @@ const Professional = ({ data }) => {
     <div className="w-full max-w-4xl mx-auto bg-white dark:bg-gray-800 shadow-lg p-12 my-8 transition-colors duration-200">
       {/* Header - Name and Title */}
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-2">{fullName}</h1>
-        <h2 className="text-2xl text-gray-600 dark:text-gray-300">{title}</h2>
+        <h1 className="text-4xl font-bold text-purple-600 dark:text-purple-400 mb-2 font-playfair">{fullName}</h1>
+        <h2 className="text-2xl text-gray-600 dark:text-gray-300 font-montserrat">{title}</h2>
       </div>
 
       {/* Contact Information */}
@@ -49,7 +51,7 @@ const Professional = ({ data }) => {
 
       {/* Skills Section */}
       <div className="mb-8">
-        <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Skills</h3>
+        <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4 font-montserrat">Skills</h3>
         <div className="grid grid-cols-3 gap-4">
           {skillColumns.map((column, columnIndex) => (
             <div key={columnIndex} className="space-y-2">
@@ -63,7 +65,7 @@ const Professional = ({ data }) => {
 
       {/* Education Section */}
       <div className="mb-8">
-        <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Education</h3>
+        <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4 font-montserrat">Education</h3>
         {education.map((edu, index) => (
           <div key={index} className="mb-4">
             <h4 className="font-semibold text-gray-700 dark:text-gray-200">{edu.degree}</h4>
@@ -75,11 +77,11 @@ const Professional = ({ data }) => {
 
       {/* Experience Section with Timeline */}
       <div className="mb-8">
-        <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Experience</h3>
+        <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4 font-montserrat">Experience</h3>
         <div className="space-y-4">
           {experience.map((exp, index) => (
-            <div key={index} className="relative pl-8 pb-4 border-l-2 border-gray-300 dark:border-gray-600">
-              <div className="absolute left-[-8px] top-0 w-4 h-4 bg-blue-500 rounded-full"></div>
+            <div key={index} className="relative pl-8 pb-4 border-l-2 border-purple-400 dark:border-purple-500">
+              <div className="absolute left-[-8px] top-0 w-4 h-4 bg-purple-500 rounded-full"></div>
               <h4 className="font-semibold text-gray-700 dark:text-gray-200">{exp.position}</h4>
               <p className="text-gray-600 dark:text-gray-300">{exp.company}</p>
               <p className="text-gray-500 dark:text-gray-400">{exp.duration}</p>
@@ -91,7 +93,7 @@ const Professional = ({ data }) => {
 
       {/* Languages Section */}
       <div className="mb-8">
-        <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Languages</h3>
+        <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4 font-montserrat">Languages</h3>
         <div className="grid grid-cols-2 gap-4">
           {languages.map((language, index) => (
             <p key={index} className="text-gray-600 dark:text-gray-300">{language}</p>
@@ -101,7 +103,10 @@ const Professional = ({ data }) => {
 
       {/* References Section */}
       <div className="mb-8">
-        <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">References</h3>
+        <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4 font-montserrat">References</h3>
+        <p className="text-gray-500 dark:text-gray-400 italic mb-4 text-left">
+          References will be provided upon request
+        </p>
         <div className="grid grid-cols-2 gap-4">
           {references.map((reference, index) => (
             <div key={index} className="mb-4">
@@ -111,11 +116,6 @@ const Professional = ({ data }) => {
             </div>
           ))}
         </div>
-      </div>
-
-      {/* References Note */}
-      <div className="text-center text-gray-500 dark:text-gray-400 italic mt-4">
-        References will be provided upon request
       </div>
     </div>
   );
